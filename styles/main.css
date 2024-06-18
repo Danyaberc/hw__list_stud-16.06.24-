@@ -4,7 +4,14 @@
 }
 .list_stud{
     width:1200px;
-    height: 100px;
+    height: 50px;
+    border:1px solid black;
+    font-size: 20px;
+    margin: 0px auto;
+}
+.errDiv{
+    width:1200px;
+    height: 50px;
     border:1px solid black;
     font-size: 20px;
     margin: 0px auto;

@@ -1,10 +1,10 @@
 let elForm = document.querySelector('.main__form')
 let elBtnSbm = document.querySelector('.disign')
-let elListStudMsg = document.querySelector('.list_stud')
+let elMsg = document.querySelector('.list_stud')
+let errDiv = document.querySelector('.errDiv')
 
 
-
- 
+let listStud = [];
 
 elForm.addEventListener('submit',(ev)=>{
    ev.preventDefault();
@@ -20,49 +20,41 @@ elForm.addEventListener('submit',(ev)=>{
         // formData.get('userAge'),
         formData.get('userLocation'),
     ]
-
-    let listStud = [];
+    
 
     let checkArr = [];
 
-
-    checkArr.push(listStudInput)
-
-    for(let i = 0; i <= checkArr.length; i+=1){
-        if(checkArr === ''){
-            break;
+    for(let i = 0 ; i < listStudInput.length;i++){
+        if(listStudInput[i] === ''){
+            break
         }
-        listStud.push(checkArr)
-        
-    }    
-    console.log(listStud)
-    // let newArr = listStudInput.map(input =>{
-    //     if(input === ''){
-    //         elListStudMsg.innerHTML = 'Введіть значення в усі інпути';
-    //         return
-    //     }
-    //     else{
-    //         console.log('listStud',listStud)
-    //         listStud.push(input)
-    //         let newListStud = listSort(listStud)
-    //         elListStudMsg.innerHTML = 'Данні введено'
-    //         console.log('NewValListStud',newListStud)
-    //     }
-        
-    // })
-})
-
-let listSort = (newList) => {
-    if(newList === ''){
+        checkArr.push(listStudInput[i])
+    }
+    console.log('checkArr', checkArr)
+    if(checkArr.length !== listStudInput.length){
+        errDiv.innerHTML = 'Не всі інпути введені'
+        elMsg.innerHTML = ''
         return
     }
-    let newValList = newList.sort()
-    return newValList
+        let resSort = funSortList(checkArr)
+        errDiv.innerHTML = ''
+        let funcPushList = funPushList(resSort)
+        
+       
+    console.log('checkarr',listStud)
     
-    
-    
-    // console.log('NewList',newList)
+})
+
+let funSortList = (newList) =>{
+    let resList = newList.sort().join(', ');
+    return resList
 }
+
+let funPushList = (listSort) =>{
+    listStud.push(listSort)
+    elMsg.innerHTML += `${listSort} ${' '}`;
+}
+
 
 
  
